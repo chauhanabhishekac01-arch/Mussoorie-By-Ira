@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- DETAIL PAGE CUSTOM STYLING MATCHING THEME --- */
+        /* --- DETAIL PAGE CUSTOM STYLING --- */
         .detail-hero {
             padding-top: 130px;
             padding-bottom: 4rem;
@@ -30,6 +30,29 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             margin-bottom: 2rem;
+            cursor: grab;
+        }
+
+        .detail-slider-wrapper:active {
+            cursor: grabbing;
+        }
+
+        /* Top Right Image Counter Badge */
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            pointer-events: none;
         }
 
         .content-card-block {
@@ -162,6 +185,74 @@
             color: #0f172a;
         }
 
+        /* --- Influencer Videos Section Styles --- */
+        .influencer-section {
+            margin-top: 4rem;
+        }
+
+        .influencer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .influencer-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 177.78%; /* 9:16 Aspect ratio for Reels/Videos */
+            background: #0f172a;
+        }
+
+        .video-wrapper iframe,
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        .influencer-body {
+            padding: 1.5rem;
+        }
+
+        .influencer-handle {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #eab308;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        .influencer-body h4 {
+            font-size: 1.1rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .influencer-body p {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
         .nearby-section {
             margin-top: 4rem;
         }
@@ -172,6 +263,9 @@
             }
             .detail-slider-wrapper {
                 height: 350px;
+            }
+            .influencer-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -208,8 +302,9 @@
             
             <!-- Left Column: Slider, Intro & Additional Information -->
             <div>
-                <!-- Heading Multi-Image Slider -->
-                <div class="detail-slider-wrapper multi-slider" data-card-slider>
+                <!-- Heading Multi-Image Slider with Top-Right Counter -->
+                <div class="detail-slider-wrapper multi-slider" data-card-slider data-auto-slide="3000" data-ping-pong="true">
+                    <div class="slide-counter"><span class="current-slide">1</span> / <span class="total-slides">5</span></div>
                     <div class="slide-img active" style="background-image: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="slide-img" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80');"></div>
                     <div class="slide-img" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80');"></div>
@@ -277,6 +372,53 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- 3 Card Display: Influencer Videos from Instagram -->
+        <div class="influencer-section">
+            <div class="section-header reveal" style="text-align: left; margin-bottom: 1rem;">
+                <h2>Creators on Instagram</h2>
+                <p>Watch real experiences and reels shared by travelers exploring Lal Tibba</p>
+            </div>
+
+            <div class="influencer-grid">
+                <!-- Creator 1 -->
+                <div class="influencer-card reveal">
+                    <div class="video-wrapper">
+                        <!-- Replace src with actual Instagram Reel embed or video file -->
+                        <iframe src="https://www.instagram.com/p/C-example1/embed" allowfullscreen></iframe>
+                    </div>
+                    <div class="influencer-body">
+                        <span class="influencer-handle">@pahari.wanderer</span>
+                        <h4>Sunrise Magic at Lal Tibba</h4>
+                        <p>Catching the first golden light hitting the snow-capped Himalayan peaks from the Landour ridge.</p>
+                    </div>
+                </div>
+
+                <!-- Creator 2 -->
+                <div class="influencer-card reveal">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.instagram.com/p/C-example2/embed" allowfullscreen></iframe>
+                    </div>
+                    <div class="influencer-body">
+                        <span class="influencer-handle">@mussoorie.diaries</span>
+                        <h4>Exploring Landour Vibe</h4>
+                        <p>A peaceful walk through pine trees and vintage telescope spots in Mussoorie's highest point.</p>
+                    </div>
+                </div>
+
+                <!-- Creator 3 -->
+                <div class="influencer-card reveal">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.instagram.com/p/C-example3/embed" allowfullscreen></iframe>
+                    </div>
+                    <div class="influencer-body">
+                        <span class="influencer-handle">@himalayan.foodie</span>
+                        <h4>Views & Cold Breeze</h4>
+                        <p>Why Lal Tibba remains an absolute must-visit spot on every Uttarakhand itinerary.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Nearby Highlights Section -->
